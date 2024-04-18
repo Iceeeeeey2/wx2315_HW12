@@ -1,12 +1,11 @@
+import numpy as np
+    
 def FizzBuzz(start, finish):
-    outlist = []
-    for num in range(start, finish + 1):
-        if num % 3 == 0 and num % 5 == 0:
-            outlist.append("fizzbuzz")
-        elif num % 3 == 0:
-            outlist.append("fizz")
-        elif num % 5 == 0:
-            outlist.append("buzz")
-        else:
-            outlist.append(num)
-    return(outlist)
+    numvec = np.arange(start, finish)  
+    objvec = np.array(numvec, dtype = object)  
+
+    fizzbuzz = np.where((numvec % 3 == 0) & (numvec % 5 == 0), "fizzbuzz", objvec)  
+    fizz = np.where((numvec % 3 == 0) & (numvec % 5 != 0), "fizz", fizzbuzz)  
+    buzz = np.where((numvec % 5 == 0) & (numvec % 3 != 0), "buzz", fizz) 
+
+    return buzz.tolist() 
